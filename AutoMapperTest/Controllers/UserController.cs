@@ -62,8 +62,16 @@ namespace AutoMapperTest.Controllers
         {
             _mapper = mapper;
         }
+
         [HttpGet]
         public IActionResult Get()
+        {
+            var user = userList.FirstOrDefault();
+            var userDto = _mapper.Map<UserDto>(user);
+            return Ok(userDto);
+        }
+        [HttpGet("All")]
+        public IActionResult GetAll()
         {
             var userDto = _mapper.Map<List<UserDto>>(userList);
             return Ok(userDto);
